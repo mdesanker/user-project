@@ -9,7 +9,7 @@ html {
   background-color: #005f73;
 }
 main {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
 }
