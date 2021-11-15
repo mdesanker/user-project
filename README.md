@@ -1,6 +1,6 @@
 Quick app for logging user and ages made using React.
 
-Live demo [here](mdesanker.github.io/user-project/)
+Live demo [here](http://mdesanker.github.io/user-project)
 
 Learned
 
