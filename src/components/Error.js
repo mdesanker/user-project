@@ -14,7 +14,7 @@ const Overlay = styled.div`
 `;
 
 const Modal = styled.div`
-  position: relative;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -33,7 +33,8 @@ const Modal = styled.div`
 
 const Error = (props) => {
   return (
-    <Overlay onClick={props.onClear}>
+    <div>
+      <Overlay onClick={props.onClear}></Overlay>
       <Modal>
         <p>
           <span>Error:</span>
@@ -43,7 +44,7 @@ const Error = (props) => {
           Close
         </Button>
       </Modal>
-    </Overlay>
+    </div>
   );
 };
 

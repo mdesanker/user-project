@@ -55,7 +55,6 @@ const App = () => {
   };
 
   const clearErrorHandler = (e) => {
-    console.log(e.target);
     setIsError(false);
   };
 
