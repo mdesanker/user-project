@@ -6,3 +6,5 @@ Learned
 
 - Styled components
 - Creating modal with conditional rendering
+- Use React.Fragment
+- Use React portals

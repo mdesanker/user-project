@@ -25,7 +25,7 @@ const App = () => {
   const updateNewUserHandler = (e) => {
     const { name, value } = e.target;
     setNewUser((prevState) => {
-      return { ...prevState, [name]: value };
+      return { ...prevState, [name]: value.trim() };
     });
   };
 
@@ -38,12 +38,12 @@ const App = () => {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    if (!newUser.name || !newUser.age) {
+    if (!newUser.name.trim() || !newUser.age.trim()) {
       setErrorMsg("Field left blank.");
       setIsError(true);
       return;
     }
-    if (Number(newUser.age) < 0) {
+    if (Number(newUser.age.trim()) < 0) {
       setErrorMsg("Invalid age value");
       setIsError(true);
       return;

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Button from "./Button";
+import ReactDOM from "react-dom";
+import React from "react";
 
 const Overlay = styled.div`
   position: absolute;
@@ -31,20 +33,36 @@ const Modal = styled.div`
   }
 `;
 
+const Backdrop = (props) => {
+  return <Overlay onClick={props.onClose} />;
+};
+
+const ModalOverlay = (props) => {
+  return (
+    <Modal>
+      <p>
+        <span>Error:</span>
+        {` ${props.errorMsg}`}
+      </p>
+      <Button secondary onClick={props.onClose}>
+        Close
+      </Button>
+    </Modal>
+  );
+};
+
 const Error = (props) => {
   return (
-    <div>
-      <Overlay onClick={props.onClear}></Overlay>
-      <Modal>
-        <p>
-          <span>Error:</span>
-          {` ${props.msg}`}
-        </p>
-        <Button secondary onClick={props.onClear}>
-          Close
-        </Button>
-      </Modal>
-    </div>
+    <React.Fragment>
+      {ReactDOM.createPortal(
+        <Backdrop onClose={props.onClear} />,
+        document.querySelector("#overlay-root")
+      )}
+      {ReactDOM.createPortal(
+        <ModalOverlay onClose={props.onClear} errorMsg={props.msg} />,
+        document.querySelector("#modal-root")
+      )}
+    </React.Fragment>
   );
 };
 
