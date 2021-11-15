@@ -19,6 +19,9 @@ const App = () => {
 
   const [newUser, setNewUser] = useState({ name: "", age: "" });
 
+  const [isError, setIsError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
   const updateNewUserHandler = (e) => {
     const { name, value } = e.target;
     setNewUser((prevState) => {
@@ -35,10 +38,25 @@ const App = () => {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
+    if (!newUser.name || !newUser.age) {
+      setErrorMsg("Field left blank.");
+      setIsError(true);
+      return;
+    }
+    if (Number(newUser.age) < 0) {
+      setErrorMsg("Invalid age value");
+      setIsError(true);
+      return;
+    }
     setUsers((prevState) => {
       return [...prevState, { ...newUser, id: uniqid() }];
     });
     setNewUser({ name: "", age: "" });
+  };
+
+  const clearErrorHandler = (e) => {
+    console.log(e.target);
+    setIsError(false);
   };
 
   return (
@@ -49,7 +67,11 @@ const App = () => {
         onFormSubmit={formSubmitHandler}
       />
       <Output users={users} onRemoveUser={removeUserHandler} />
-      <Error />
+      {isError ? (
+        <Error onClear={clearErrorHandler} msg={errorMsg}></Error>
+      ) : (
+        ""
+      )}
     </Main>
   );
 };
