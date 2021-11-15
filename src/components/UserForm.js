@@ -19,17 +19,29 @@ const Form = styled.form`
   }
 `;
 
-const UserForm = () => {
+const UserForm = (props) => {
   return (
     <Container>
-      <Form>
+      <Form onSubmit={props.onFormSubmit}>
         <div className="field">
           <label htmlFor="username">Username</label>
-          <input type="text" name="username" id="username" />
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value={props.user.name}
+            onChange={props.onUpdateUser}
+          />
         </div>
         <div className="field">
           <label htmlFor="age">Age (years)</label>
-          <input type="text" name="age" id="age" />
+          <input
+            type="text"
+            name="age"
+            id="age"
+            value={props.user.age}
+            onChange={props.onUpdateUser}
+          />
         </div>
         <Button type="submit">Add User</Button>
       </Form>

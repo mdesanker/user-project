@@ -16,9 +16,33 @@ const App = () => {
     { name: "Izabella", age: 37, id: uniqid() },
   ]);
 
+  const [newUser, setNewUser] = useState({ name: "", age: "" });
+
+  const updateNewUserHandler = (e) => {
+    const { name, value } = e.target;
+    setNewUser((prevState) => {
+      return { ...prevState, [name]: value };
+    });
+  };
+
+  const removeUserHandler = (userId) => {};
+
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+    setUsers((prevState) => {
+      return [...prevState, { ...newUser, id: uniqid() }];
+    });
+    setNewUser({ name: "", age: "" });
+  };
+
   return (
     <Main>
-      <UserForm />
+      <UserForm
+        user={newUser}
+        onUpdateUser={updateNewUserHandler}
+        onRemoveUser={removeUserHandler}
+        onFormSubmit={formSubmitHandler}
+      />
       <Output users={users} />
     </Main>
   );
