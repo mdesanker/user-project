@@ -4,7 +4,11 @@ import Field from "./Field";
 const Output = (props) => {
   const content = props.users.map((user) => {
     return (
-      <Field key={user.id}>{`${user.name} (${user.age} years old)`}</Field>
+      <Field
+        key={user.id}
+        id={user.id}
+        onClick={props.onRemoveUser}
+      >{`${user.name} (${user.age} years old)`}</Field>
     );
   });
 

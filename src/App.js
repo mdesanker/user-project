@@ -25,7 +25,12 @@ const App = () => {
     });
   };
 
-  const removeUserHandler = (userId) => {};
+  const removeUserHandler = (e) => {
+    const userId = e.target.id;
+    setUsers((prevState) => {
+      return prevState.filter((user) => userId !== user.id);
+    });
+  };
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -40,10 +45,9 @@ const App = () => {
       <UserForm
         user={newUser}
         onUpdateUser={updateNewUserHandler}
-        onRemoveUser={removeUserHandler}
         onFormSubmit={formSubmitHandler}
       />
-      <Output users={users} />
+      <Output users={users} onRemoveUser={removeUserHandler} />
     </Main>
   );
 };
