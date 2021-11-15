@@ -3,6 +3,7 @@ import styled from "styled-components";
 import uniqid from "uniqid";
 import Output from "./components/Output";
 import UserForm from "./components/UserForm";
+import Error from "./components/Error";
 
 const Main = styled.main`
   display: flex;
@@ -48,6 +49,7 @@ const App = () => {
         onFormSubmit={formSubmitHandler}
       />
       <Output users={users} onRemoveUser={removeUserHandler} />
+      <Error />
     </Main>
   );
 };
